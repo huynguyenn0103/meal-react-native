@@ -10,6 +10,8 @@ import MealDetailScreen from './screens/MealDetailScreen';
 import FavoriteScreen from './screens/FavoritesScreen';
 import {Ionicons} from '@expo/vector-icons'
 import FavoritesContextProvider from './store/context/favorites-context';
+import { Provider } from 'react-redux';
+import { store } from './store/redux/store';
 //NEW: Stack is obj with 2 properties: Navigator and Screen
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -56,7 +58,8 @@ export default function App() {
     <>
       <StatusBar style="light" />
       {/* API CONTEXT */}
-      <FavoritesContextProvider>
+      {/* <FavoritesContextProvider> */}
+      <Provider store={store}>
       {/* NEW: step 1: add NavigationContainer */}
         <NavigationContainer>
           {/* NEW: step 2: add Navigator and Screen => register component*/}
@@ -106,7 +109,8 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </FavoritesContextProvider>
+      {/* </FavoritesContextProvider> */}
+      </Provider>
     </>
   );
 }
@@ -122,3 +126,4 @@ const styles = StyleSheet.create({
 //npm install @react-navigation/drawer
 //expo install react-native-gesture-handler react-native-reanimated
 //npm install react-native-reanimated@1 --save --save-exact
+//npm install @reduxjs/toolkit react-redux
